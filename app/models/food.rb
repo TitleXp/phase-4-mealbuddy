@@ -1,5 +1,5 @@
 class Food < ApplicationRecord
-    has_many :each_food_per_meal, dependent: destroy
+    has_many :each_food_per_meal
     has_many :meals, through: :each_food_per_meal
 
     validates :food_name, :carbs, :fats, :proteins, :calories, presence: true
