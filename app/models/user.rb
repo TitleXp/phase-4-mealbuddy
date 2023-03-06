@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_many :meals
+    has_many :meals, dependent: destroy
     has_many :each_food_per_meal, through: :meals
     
     validates :calorie_goal, :name, :dob, :weight, :username, :email :password_digest, presence: true
@@ -11,6 +11,6 @@ class User < ApplicationRecord
 
 
     def age_of_user
-        
+
     end
 end
