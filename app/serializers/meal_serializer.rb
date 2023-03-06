@@ -1,4 +1,4 @@
 class MealSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :name, :date
   has_one :user
 end

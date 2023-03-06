@@ -19,7 +19,7 @@ puts "Creating foods/ingredients"
 end
 
 puts "Creating a meal"
-meal1 = Meal.create!(name: "Breakfast Mon 3/6/22", user_id: u1.id)
+meal1 = Meal.create!(name: "Breakfast Mon 3/6/22", user_id: u1.id, date: "2023-03-06")
 
 puts "Creating an Each_Food_Per_Meal record"
 food_meal_item_1 = EachFoodPerMeal.create!(meal_id: meal1.id, food_id: Food.all.sample.id, quantity: 2) 
