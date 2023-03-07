@@ -18,6 +18,7 @@ puts "Creating foods/ingredients"
 end
 
 puts "Creating a meal"
+
 breakfast = Meal.create!(name: "Breakfast", user_id: u10.id, date: "2023-03-06")
 lunch = Meal.create!(name: "Lunch", user_id: u10.id, date: "2023-03-06")
 dinner = Meal.create!(name: "Dinner", user_id: u10.id, date: "2023-03-06")
@@ -34,5 +35,6 @@ end
 4.times do 
     EachFoodPerMeal.create!(meal_id: dinner.id, food_id: Food.all.sample.id, quantity: 2)
 end
+
 
 puts "Seeding done"

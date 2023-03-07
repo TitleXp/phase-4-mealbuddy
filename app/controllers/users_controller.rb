@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
     skip_before_action :authorized_user, only: [:create]
     
-    def show
-        render json: @user, status: :ok
+    def index
+        render json: @user #, serializer: UserWithMealAndEachFoodAndFoodSerializer, status: :ok
     end
 
     def create

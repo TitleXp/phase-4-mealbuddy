@@ -59,3 +59,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_184325) do
   add_foreign_key "each_food_per_meals", "meals"
   add_foreign_key "meals", "users"
 end
+
+# username: "",
+#         name: "",
+#         dob: "",
+#         email: "",
+#         password: "",
+#         calorie_goal: "",
+#         weight: ""
