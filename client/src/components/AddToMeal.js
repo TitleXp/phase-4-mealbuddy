@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NavBar = () => {
+const AddToMeal = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const NavBar = () => {
     );
 }
 
-export default NavBar;
+export default AddToMeal;
