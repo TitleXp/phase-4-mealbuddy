@@ -23,22 +23,11 @@ const NavBar = ( { setCurrentUser, currentUser } ) => {
     if(!currentUser) {
         return(
 
-            <div>
-                <Link to="/meals">
-                    Meal Log    
-                </Link>
-
-                <Link to="/meals/food_item/new" >
-                    Add To Meal
-                </Link>        
-
+            <div>    
+                
                 <Link to="/community">
                     Community
                 </Link> 
-
-                <Link to="/profile">
-                    Profile
-                </Link>
 
                 <Link to="/login">
                     Login

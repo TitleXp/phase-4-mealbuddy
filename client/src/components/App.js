@@ -46,6 +46,51 @@ function App() {
 
     // console.log(currentUser)
 
+
+if(!currentUser) { // IF no user logged in, what can they see?
+    return(
+        <div>
+            <NavBar />
+            <Switch>
+
+            {/* <Route exact path= "/">
+                <Login />
+            </Route>
+
+            <Route exact path= "/meals">
+                <MealLog />
+            </Route>
+
+            <Route path= "/meals/food_item/new">
+                <AddToMeal />
+            </Route>
+
+            <Route exact path="/foods/new" >
+                <CreateAFoodForm />
+            </Route>
+
+            <Route exact path="/profile" >
+                <Profile />
+            </Route> */}
+
+            <Route exact path="/community" >
+                <Community />
+            </Route>
+
+            <Route exact path="/login" >
+                <>
+                    {showLogin?
+                        <Login setCurrentUser={setCurrentUser} handleLoginSignup={handleLoginSignup}/> : 
+                        <Signup setCurrentUser={setCurrentUser} handleLoginSignup={handleLoginSignup}/>
+                    }
+                </>
+            </Route>
+
+
+            </Switch>
+        </div>
+        )}
+
   return (
     <div>
         <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
