@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     has_secure_password
-    has_many :meals#, dependent: :destroy
+    has_many :meals, dependent: :destroy
     has_many :each_food_per_meal, through: :meals
     
     validates :calorie_goal, :name, :dob, :weight, :username, :email, presence: true
