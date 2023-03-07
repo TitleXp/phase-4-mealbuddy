@@ -1,5 +1,10 @@
 import { Switch, Route } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+
+
 import Login from './Login'
+import Signup from './Signup'
 import MealLog from './MealLog'
 import AddToMeal from './AddToMeal'
 import CreateAFoodForm from './CreateAFoodForm'
@@ -7,10 +12,43 @@ import Profile from './Profile'
 import Community from './Community'
 import NavBar from './NavBar'
 
+
+
 function App() {
+
+    const history = useHistory()
+
+    const [currentUser, setCurrentUser] = useState(null);
+    const [showLogin, setShowLogin] = useState(true)
+
+    const handleLoginSignup = () => {
+        setShowLogin(currentVal => !currentVal)
+      }
+
+      useEffect(() => { // fetch /authorized to see if user is logged in when page refresh/navigate away
+        const fetchAuthorizedUser = async () => {
+            try {
+              const resp = await fetch("/authorized")
+              const data = await resp.json()
+              if(resp.ok){
+              setCurrentUser(data)
+              history.push('/meals')
+                }else {
+                  // setMessage something
+              }
+            } catch (error) {
+              alert(error)
+            }
+          }
+          fetchAuthorizedUser()
+        }, [])
+      
+
+    // console.log(currentUser)
+
   return (
     <div>
-        <NavBar />
+        <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
         <Switch>
 
           <Route exact path= "/">
@@ -36,6 +74,16 @@ function App() {
           <Route exact path="/community" >
               <Community />
           </Route>
+
+          <Route exact path="/login" >
+            <>
+                {showLogin?
+                    <Login setCurrentUser={setCurrentUser} handleLoginSignup={handleLoginSignup}/> : 
+                    <Signup setCurrentUser={setCurrentUser} handleLoginSignup={handleLoginSignup}/>
+                }
+            </>
+          </Route>
+
 
         </Switch>
     </div>
