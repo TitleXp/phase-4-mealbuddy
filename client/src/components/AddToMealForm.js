@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 
 // this form needs food.id, meal.id, and quantity
-const AddToMealForm = ({  setMeals }) => {
+const AddToMealForm = ({ setMeals }) => {
 
-    const [ meals, setMealss] = useState([])
-    const [ foods, setFoods] = useState([])
-    const [ mealId, setMealId] = useState("")
-    const [ foodId, setFoodId] = useState([])
-    const [ quantity, setQuantity] = useState([])
+    const [ meals, setMealss ] = useState([])
+    const [ foods, setFoods ] = useState([])
+    const [ mealId, setMealId ] = useState("")
+    const [ foodId, setFoodId ] = useState([])
+    const [ quantity, setQuantity ] = useState([])
 
     const formData = {
         meal_id: mealId,
@@ -114,25 +114,6 @@ const AddToMealForm = ({  setMeals }) => {
     return (
         <div>
             <form onSubmit={handleSubmit} >
-                {/* Food:
-                <input onChange={handleChange}
-                    value={formFoodInMeal.food}
-                    type='text'
-                    name='food'
-                    placeholder='Food name' />
-                Quantity:
-                <input onChange={handleChange}
-                    value={formFoodInMeal.quantity}
-                    type='number'
-                    name='quantity'
-                    placeholder='quantity' />
-                Meal Name:
-                <input onChange={handleChange}
-                    value={formFoodInMeal.name}
-                    type='text'
-                    name='name'
-                    placeholder='Meal name' /> */}
-
                 <label htmlFor="meal_id">Meal:</label>
                     <select
                         // id=""

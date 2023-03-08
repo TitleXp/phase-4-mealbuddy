@@ -41,14 +41,19 @@ const CreateAMealForm = ({onSubmitMeal, user}) => {
 
     const { name, date, user_id } = mealForm
 
+
+    console.log(user)
   return (
     <div>
         Create a meal name and date
         <form onSubmit={handleSubmit}>
             Meal Name:
-            <input value={name} onChange={handleChange} type="text" name="name" placeholder="Brkfst/Lnch/Dnnr/Snack"/>
+            <input value={name} onChange={handleChange} type="text" name="name" placeholder="Brkfst/Lnch/Dnnr/Snack" required/>
             Meal Date:
-            <input value={date} onChange={handleChange} type="date" name="date" />
+            <input value={date} onChange={handleChange} type="date" name="date" required/>
+            {/* <br/> */}
+            {/* by: {user.name} */}
+            <br/>
         <button type="submit">Add this meal to your profile</button>
         </form>
     </div>

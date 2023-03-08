@@ -20,6 +20,9 @@ function App() {
 
     const [currentUser, setCurrentUser] = useState(null);
     const [showLogin, setShowLogin] = useState(true)
+    const [foods, setFoods] = useState([]) // foods array
+    const [meals, setMeals] = useState([]) // meals array for the form
+
 
     const handleLoginSignup = () => {
         setShowLogin(currentVal => !currentVal)
@@ -45,6 +48,18 @@ function App() {
       
 
     // console.log(currentUser)
+
+    useEffect(() => { // GET foods
+        fetch('/foods')
+        .then(res => res.json())
+        .then(data => setFoods(data))
+      }, [])
+
+    useEffect(() => { // GET meals for the form
+        fetch('/meals')
+        .then(res => res.json())
+        .then(data => setMeals(data))
+    }, [] )
 
 
 if(!currentUser) { // IF no user logged in, what can they see?
@@ -101,11 +116,11 @@ if(!currentUser) { // IF no user logged in, what can they see?
           </Route>
 
           <Route exact path= "/meals">
-              <MealLog user={currentUser}/>
+              <MealLog user={currentUser} setFoods={setFoods}/>
           </Route>
 
           <Route path= "/meals/food_item/new">
-              <AddToMeal />
+              <AddToMeal foods={foods} meals={meals} setMeals={setMeals}/>
           </Route>
 
           <Route exact path="/foods/new" >

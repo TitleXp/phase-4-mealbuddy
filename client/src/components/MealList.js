@@ -1,11 +1,11 @@
 import React from 'react';
 import MealCard from "./MealCard"
 
-const MealList = ({ meals }) => {
+const MealList = ({ meals, user, setMeals, setFoods }) => {
 
     const mappedMeals = meals.map(meal => {
         return ( 
-            <MealCard key={meal.id} meal={meal} />
+            <MealCard key={meal.id} meal={meal} user={user} setMeals={setMeals} setFoods={setFoods} />
         )
     })
 

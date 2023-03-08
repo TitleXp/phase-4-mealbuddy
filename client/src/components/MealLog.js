@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import MealList from "./MealList"
 import CreateAMealForm from "./CreateAMealForm"
 
-const MealLog = ({user}) => {
+const MealLog = ({ user, setFoods }) => {
 
     const [meals, setMeals] = useState([]);
 
@@ -21,7 +21,7 @@ const MealLog = ({user}) => {
             <h1>{user.name}'s Meal Log</h1>
             Daily Calorie Budget: {user.calorie_goal}
             <CreateAMealForm onSubmitMeal={addMeal} user={user}/>
-            <MealList meals={meals} />
+            <MealList meals={meals} user={user} setMeals={setMeals} setFoods={setFoods}/>
         </div>
     );
 }

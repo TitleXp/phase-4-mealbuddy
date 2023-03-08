@@ -5,6 +5,11 @@ class UsersController < ApplicationController
         render json: @user #, serializer: UserWithMealAndEachFoodAndFoodSerializer, status: :ok
     end
 
+    def index # disable this during deployment so it doesn't show all users
+        all_user = User.all
+        render json: all_user, status: :ok
+    end
+
     def create
         user = User.create!(user_params)
         session[:user_id] = user.id

@@ -1,6 +1,6 @@
 class MealSerializer < ActiveModel::Serializer
 
-  attributes :id, :name, :date
+  attributes :id, :name, :date, :user_id
 
   has_one :user
   has_many :each_food_per_meal
