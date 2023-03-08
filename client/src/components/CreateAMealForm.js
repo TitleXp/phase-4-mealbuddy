@@ -1,14 +1,19 @@
 import React, {useState} from 'react'
 
-const defaultInputs = {
-    name: '',
-    date: Date()
-}
 
-const CreateAMealForm = () => {
 
+const CreateAMealForm = ({onSubmitMeal, user}) => {
+
+    const defaultInputs = {
+        name: '',
+        date: Date(),
+        user_id: user.id
+    }
+    
+    
     const [mealForm, setMealForm] = useState(defaultInputs)
 
+    
     const handleChange = e => {
         setMealForm({...mealForm, [e.target.name]: e.target.value})
     }
@@ -16,7 +21,7 @@ const CreateAMealForm = () => {
     const handleSubmit = e => {
         e.preventDefault()
         postMeal()
-        //     .then(onSubmitMeal)
+            .then(onSubmitMeal)
     }
 
     const postMeal = () => {
@@ -27,13 +32,14 @@ const CreateAMealForm = () => {
           },
           body: JSON.stringify({
             ...mealForm,
+            // user_id: mealForm.user_id
           })
         }
         return fetch('/meals', config)
             .then(response => response.json())
     }
 
-    const { name, date } = mealForm
+    const { name, date, user_id } = mealForm
 
   return (
     <div>
