@@ -12,14 +12,15 @@ const MealLog = ({user}) => {
             .then(data => setMeals(data))
     },[])
 
-    // console.log(meals)
-
+    const addMeal = newMeal => {
+        setMeals([...meals, newMeal])
+    }
   
     return (
         <div>
             <h1>{user.name}'s Meal Log</h1>
             Daily Calorie Budget: {user.calorie_goal}
-            <CreateAMealForm/>
+            <CreateAMealForm onSubmitMeal={addMeal} user={user}/>
             <MealList meals={meals} />
         </div>
     );
