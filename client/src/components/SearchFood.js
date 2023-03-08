@@ -1,14 +1,22 @@
 import React from 'react';
 
-const SearchFood = ({searchFood, handleSearch}) => {
+const SearchFood = ({searchFood, setSearchFood}) => {
+
+    const handleChange = (e) => {
+        setSearchFood(e.target.value)
+    }
+
+    // const handleChange = (e) => {
+    //     setSearchFood({...searchFood, [e.target.name]: e.target.value})
+    //   }
+
     return (
         <div>
             <input
                 value={searchFood}
                 type='text'
-                id='search'
                 placeholder='Search for foods'
-                onChange={(e) => handleSearch(e.target.value)}
+                onChange={handleChange}
             />
         </div>
     );

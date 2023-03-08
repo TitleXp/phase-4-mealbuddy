@@ -1,21 +1,20 @@
 import React, {useState} from 'react';
+// import { useHistory } from 'react-router-dom';
 import SearchFood from './SearchFood'
 
 
-const AddToMealForm = ({meals, setMeals}) => {
+const AddToMealForm = ({ meals, setMeals }) => {
 
-    const [searchFood, setSearchFood] = useState([])
+    // const history = useHistory()
+
     const [formFoodInMeal, setFormFoodInMeal] = useState({
         food: "",
         quantity: "",
-        meal_name: ""
+        name: ""
     })
 
     // const defaultForm = ''
-    
-    // function handleChange(e) {
-    //     setFormFoodInMeal(e.target.value);
-    // }
+
 
     const handleChange = (e) => {
         setFormFoodInMeal({...formFoodInMeal, [e.target.name]: e.target.value})
@@ -23,7 +22,7 @@ const AddToMealForm = ({meals, setMeals}) => {
 
       const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('/', {
+        fetch('/meals', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',
@@ -32,16 +31,22 @@ const AddToMealForm = ({meals, setMeals}) => {
         })
             .then((response) => {
             if (response.status === 201) {
-                response.json().then(userObj => {
-                setFormFoodInMeal(userObj)
+                response.json().then(Obj => {
+                setMeals(Obj)
                 // history.push('/')  // where should the user go after submitting the meal?
             })      } else {
                 response.json().then((error) => {
                 alert(error)
                 })
             }
+
             })
             .catch((error) => alert(error));
+            setFormFoodInMeal({
+                food: "",
+                quantity: "",
+                name: ""
+            })
         };
 
         // this setter needs to be passed from AddToMeal
@@ -49,8 +54,6 @@ const AddToMealForm = ({meals, setMeals}) => {
 
     return (
         <div>
-            Search foods:
-            <SearchFood searchFood={searchFood} handleSearch={setSearchFood}/>
             <form onSubmit={handleSubmit} >
                 Food:
                 <input onChange={handleChange}
@@ -68,7 +71,7 @@ const AddToMealForm = ({meals, setMeals}) => {
                 <input onChange={handleChange}
                     value={formFoodInMeal.name}
                     type='text'
-                    name='meal_name'
+                    name='name'
                     placeholder='Meal name' />
             <button type="submit">Add this to your meal</button>
 
