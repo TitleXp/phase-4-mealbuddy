@@ -120,14 +120,14 @@ if(!currentUser) { // IF no user logged in, what can they see?
               <Community />
           </Route>
 
-          <Route exact path="/login" >
+          {/* <Route exact path="/login" >
             <>
                 {showLogin?
                     <Login setCurrentUser={setCurrentUser} handleLoginSignup={handleLoginSignup}/> : 
                     <Signup setCurrentUser={setCurrentUser} handleLoginSignup={handleLoginSignup}/>
                 }
             </>
-          </Route>
+          </Route> */}
 
 
         </Switch>

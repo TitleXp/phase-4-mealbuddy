@@ -30,7 +30,7 @@ const AddToMeal = () => {
    return (
        <div>
            Add a food to an existing meal:
-           <AddToMealForm searchFood={searchFood} setSearchFood={setSearchFood} meals={meals} setMeals={setMeals} foods={foods}/>
+           <AddToMealForm meals={meals} setMeals={setMeals} foods={foods}/>
            <br/>
            Search foods:
             <SearchFood searchFood={searchFood} setSearchFood={setSearchFood} />

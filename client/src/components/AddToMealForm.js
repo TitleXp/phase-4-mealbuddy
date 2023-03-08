@@ -1,20 +1,26 @@
 import React, {useState} from 'react';
 // import { useHistory } from 'react-router-dom';
-import SearchFood from './SearchFood'
+
+// import SearchFood from './SearchFood'
 
 
-const AddToMealForm = ({ meals, setMeals }) => {
+// this form needs food.id, meal.id, and quantity
+const AddToMealForm = ({ meals, setMeals, foods }) => {
 
     // const history = useHistory()
+
 
     const [formFoodInMeal, setFormFoodInMeal] = useState({
         food: "",
         quantity: "",
         name: ""
+        // name: `${meals.id}` // meal name
     })
 
     // const defaultForm = ''
 
+    console.log("this is meal: ", meals)
+    console.log("this is food: ", foods)
 
     const handleChange = (e) => {
         setFormFoodInMeal({...formFoodInMeal, [e.target.name]: e.target.value})
@@ -22,7 +28,7 @@ const AddToMealForm = ({ meals, setMeals }) => {
 
       const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('/meals', {
+        fetch('/each_food_per_meals', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',
@@ -52,6 +58,7 @@ const AddToMealForm = ({ meals, setMeals }) => {
         // this setter needs to be passed from AddToMeal
         // setFormFoodInMeal(defaultForm)
 
+        
     return (
         <div>
             <form onSubmit={handleSubmit} >
