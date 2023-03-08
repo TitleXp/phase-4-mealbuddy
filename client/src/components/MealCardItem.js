@@ -1,15 +1,16 @@
 import React from 'react'
 
- function MealCardItem({ food, join_record }) {
-
-    console.log("join record MealCardItem:", join_record)
+ function MealCardItem({ food}) {
   return (
-    <div>{food.food_name}
-    {food.calories}
-    {food.carbs}
-    {food.fats}
-    {food.proteins}
-   quantity{join_record}</div>
+    <div>
+      {food.food.food_name}
+      Calories: {food.food.calories}
+      Carbs: {food.food.carbs}
+      Fats: {food.food.fats}
+      Proteins: {food.food.proteins}
+      Quantity{food.quantity}
+      <button>Delete food within this meal</button>
+    </div>
   )
 }
 

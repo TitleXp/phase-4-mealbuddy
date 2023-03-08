@@ -3,26 +3,19 @@ import MealCardItem from './MealCardItem'
 
 const MealCard = ({meal}) => {
 
-    // const mappedFood = meal.foods.map(food => {
-    //     return (
-    //         <MealCardItem key={food.id} food={food}/>
-    //     )
-    // })
-
-    // const mappedQuantity = meal.each_food_per_meal.map(join_record => { 
-    //     console.log("join MealCard:", join_record)
-    //     return 
-    //         <MealCardItem key={join_record.id} join_record={join_record}/>
-    
-    // })
+    const mappedFood = meal.each_food_per_meal.map(food => {
+        return (
+            <MealCardItem key={food.id} food={food}/>
+        )
+    })
 
     return (
         <div>
-            {meal.name}
+            <h4>{meal.name} ...
             {meal.date}
-            {/* {mappedFood}
-            {mappedQuantity} */}
- {/* <MealCardItem food={mappedFood} join_record={mappedQuantity} */}
+            <button >Delete Meal</button>
+            </h4>
+            {mappedFood}
         </div>
     );
 }
