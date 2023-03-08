@@ -2,22 +2,50 @@ import React, {useState} from 'react';
 import SearchFood from './SearchFood'
 
 
-const AddToMealForm = ({meals, setEachFood}) => {
+const AddToMealForm = ({meals, setMeals}) => {
 
     const [searchFood, setSearchFood] = useState([])
-    const [formFoodInMeal, setFormFoodInMeal] = useState('')
+    const [formFoodInMeal, setFormFoodInMeal] = useState({
+        food: "",
+        quantity: "",
+        meal_name: ""
+    })
 
-    const defaultForm = ''
+    // const defaultForm = ''
     
-    function handleChange(e) {
-        setFormFoodInMeal(e.target.value);
-    }
+    // function handleChange(e) {
+    //     setFormFoodInMeal(e.target.value);
+    // }
 
-    function handleSubmit(e) {
+    const handleChange = (e) => {
+        setFormFoodInMeal({...formFoodInMeal, [e.target.name]: e.target.value})
+      }
+
+      const handleSubmit = (e) => {
         e.preventDefault();
-        setEachFood({}) // this setter needs to be passed from AddToMeal
+        fetch('/', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formFoodInMeal),
+        })
+            .then((response) => {
+            if (response.status === 201) {
+                response.json().then(userObj => {
+                setFormFoodInMeal(userObj)
+                // history.push('/')  // where should the user go after submitting the meal?
+            })      } else {
+                response.json().then((error) => {
+                alert(error)
+                })
+            }
+            })
+            .catch((error) => alert(error));
+        };
+
+        // this setter needs to be passed from AddToMeal
         // setFormFoodInMeal(defaultForm)
-    }
 
     return (
         <div>
@@ -26,22 +54,22 @@ const AddToMealForm = ({meals, setEachFood}) => {
             <form onSubmit={handleSubmit} >
                 Food:
                 <input onChange={handleChange}
-                    value={searchFood}
+                    value={formFoodInMeal.food}
                     type='text'
-                    name=''
-                    placeholder='' />
+                    name='food'
+                    placeholder='Food name' />
                 Quantity:
                 <input onChange={handleChange}
-                    value={searchFood}
+                    value={formFoodInMeal.quantity}
                     type='number'
-                    name=''
-                    placeholder='' />
+                    name='quantity'
+                    placeholder='quantity' />
                 Meal Name:
                 <input onChange={handleChange}
-                    value={searchFood}
+                    value={formFoodInMeal.name}
                     type='text'
-                    name=''
-                    placeholder='' />
+                    name='meal_name'
+                    placeholder='Meal name' />
             <button type="submit">Add this to your meal</button>
 
             </form>

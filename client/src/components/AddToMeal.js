@@ -24,7 +24,7 @@ const AddToMeal = () => {
    return (
        <div>
            Add a food to an existing meal:
-           <AddToMealForm meals={meals} setEachFood={setMeals}/>
+           <AddToMealForm meals={meals} setMeals={setMeals}/>
            <br/>
            All foods in database:
            <FoodList foods={foods}/>
