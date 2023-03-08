@@ -10,14 +10,26 @@ const AddToMealForm = ({  setMeals }) => {
     const [ foodId, setFoodId] = useState([])
     const [ quantity, setQuantity] = useState([])
 
+    const formData = {
+        meal_id: mealId,
+        food_id: foodId,
+        quantity,
+    };
 
-    useEffect(() => {
+    // const [formData, setFormData] = useState({
+    //         meal_id: mealId,
+    //         food_id: foodId,
+    //         quantity,
+    // })
+
+
+    useEffect(() => { // fetch meals
         fetch("/meals")
           .then((r) => r.json())
           .then(setMealss);
       }, []);
 
-      useEffect(() => {
+      useEffect(() => { // fetch foods
         fetch("/foods")
           .then((r) => r.json())
           .then(setFoods);
@@ -25,11 +37,11 @@ const AddToMealForm = ({  setMeals }) => {
 
       const handleSubmit = (e) => {
         e.preventDefault();
-        const formData = {
-            meal_id: mealId,
-            food_id: foodId,
-            quantity,
-        };
+        // const formData = {
+        //     meal_id: mealId,
+        //     food_id: foodId,
+        //     quantity,
+        // };
         fetch("/each_food_per_meals", {
             method: "POST",
             headers: {
@@ -40,12 +52,14 @@ const AddToMealForm = ({  setMeals }) => {
             if (r.ok) {
                 r.json().then(Obj => {
                     setMeals(Obj)
+                    // setFormData(formData)
                 })
                 // history.push()
         } else {
              r.json().then((error) => {
                 alert(error)
-        })
+        }
+        )
         // r.json().then((err) => setFormErrors(err.errors))
       }
     });
