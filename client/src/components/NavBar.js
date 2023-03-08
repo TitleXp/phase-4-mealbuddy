@@ -24,7 +24,7 @@ const NavBar = ( { setCurrentUser, currentUser } ) => {
         return(
 
             <div>    
-                
+
                 <Link to="/community">
                     Community
                 </Link> 
@@ -57,9 +57,9 @@ const NavBar = ( { setCurrentUser, currentUser } ) => {
                 Profile
             </Link>
 
-            <Link to="/login">
+            {/* <Link to="/login">
                 Login
-            </Link>
+            </Link> */}
 
             <button onClick={handleLogOut}>Log Out</button>
 
