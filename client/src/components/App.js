@@ -113,7 +113,7 @@ if(!currentUser) { // IF no user logged in, what can they see?
           </Route>
 
           <Route exact path="/profile" >
-              <Profile />
+              <Profile user={currentUser}/>
           </Route>
 
           <Route exact path="/community" >

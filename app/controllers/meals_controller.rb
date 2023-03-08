@@ -3,7 +3,7 @@ class MealsController < ApplicationController
 
     def index
         meals = Meal.all
-        render json: meals, status: :ok
+        render json: meals, include: ['each_food_per_meal', 'each_food_per_meal.food'] , status: :ok
     end
 
     def show
