@@ -4,8 +4,6 @@ import CreateAFoodForm from './CreateAFoodForm'
 import FoodList from './FoodList'
 
 
-
-
 const AddToMeal = () => {
 
     const [foods, setFoods] = useState([]) // foods array
@@ -25,9 +23,13 @@ const AddToMeal = () => {
 
    return (
        <div>
-           <AddToMealForm meals={meals}/>
-           <CreateAFoodForm/>
+           Add a food to an existing meal:
+           <AddToMealForm meals={meals} setEachFood={setMeals}/>
+           <br/>
+           All foods in database:
            <FoodList foods={foods}/>
+           <CreateAFoodForm/>
+
        </div>
    );
 }
