@@ -101,7 +101,7 @@ if(!currentUser) { // IF no user logged in, what can they see?
           </Route>
 
           <Route exact path= "/meals">
-              <MealLog />
+              <MealLog user={currentUser}/>
           </Route>
 
           <Route path= "/meals/food_item/new">

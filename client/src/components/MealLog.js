@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import MealList from "./MealList"
+import CreateAMealForm from "./CreateAMealForm"
 
-const MealLog = () => {
+const MealLog = ({user}) => {
 
     const [meals, setMeals] = useState([]);
 
@@ -16,6 +17,9 @@ const MealLog = () => {
   
     return (
         <div>
+            <h1>{user.name}'s Meal Log</h1>
+            Daily Calorie Budget: {user.calorie_goal}
+            <CreateAMealForm/>
             <MealList meals={meals} />
         </div>
     );
