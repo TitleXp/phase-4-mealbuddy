@@ -48,7 +48,8 @@ const MealCard = ({ meal, meals, user, setMeals, setFoods, deleteEachFoods, each
                     <td>Qty</td>
                     <td><button class="ui mini button" onClick={handleDeleteMeal} >Delete Meal</button></td>
                 </tr>
-                {mappedFood}
+                <tr>{mappedFood}</tr>
+                
             </table>
         </div>
     );
