@@ -13,7 +13,7 @@ const AddToMealForm = ({ setMeals }) => {
     const formData = {
         meal_id: mealId,
         food_id: foodId,
-        quantity,
+        quantity
     };
 
     // const [formData, setFormData] = useState({
@@ -22,97 +22,99 @@ const AddToMealForm = ({ setMeals }) => {
     //         quantity,
     // })
 
-
+    
+    
     useEffect(() => { // fetch meals
         fetch("/meals")
-          .then((r) => r.json())
-          .then(setMealss);
-      }, []);
+        .then((r) => r.json())
+        .then(setMealss);
+    }, []);
 
-      useEffect(() => { // fetch foods
+    useEffect(() => { // fetch foods
         fetch("/foods")
-          .then((r) => r.json())
-          .then(setFoods);
-      }, []);
-
-      const handleSubmit = (e) => {
+        .then((r) => r.json())
+        .then(setFoods);
+    }, []);
+    
+    const handleSubmit = (e) => {
         e.preventDefault();
         // const formData = {
-        //     meal_id: mealId,
-        //     food_id: foodId,
-        //     quantity,
-        // };
-        fetch("/each_food_per_meals", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-        }).then((r) => {
-            if (r.ok) {
-                r.json().then(Obj => {
-                    setMeals(Obj)
-                    // setFormData(formData)
-                })
-                // history.push()
-        } else {
+            //     meal_id: mealId,
+            //     food_id: foodId,
+            //     quantity,
+            // };
+            fetch("/each_food_per_meals", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            }).then((r) => {
+                if (r.ok) {
+                    r.json().then(Obj => {
+                        setMeals(Obj)
+                        // setFormData(formData)
+                    })
+                    // history.push()
+                } else {
              r.json().then((error) => {
                 alert(error)
+            }
+            )
+            // r.json().then((err) => setFormErrors(err.errors))
         }
-        )
-        // r.json().then((err) => setFormErrors(err.errors))
-      }
     });
-      }
+}
 
-    // const [formFoodInMeal, setFormFoodInMeal] = useState({
+// const [formFoodInMeal, setFormFoodInMeal] = useState({
     //     food: "",
     //     quantity: "",
     //     name: ""
     //     // name: `${meals.id}` // meal name
     // })
-
-
+    
+    
     // const handleChange = (e) => {
-    //     setFormFoodInMeal({...formFoodInMeal, [e.target.name]: e.target.value})
-    //   }
-
-    //   const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     fetch('/each_food_per_meals', {
-    //         method: 'POST',
-    //         headers: {
-    //         'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(formFoodInMeal),
+        //     setFormFoodInMeal({...formFoodInMeal, [e.target.name]: e.target.value})
+        //   }
+        
+        //   const handleSubmit = (e) => {
+            //     e.preventDefault();
+            //     fetch('/each_food_per_meals', {
+                //         method: 'POST',
+                //         headers: {
+                    //         'Content-Type': 'application/json',
+                    //         },
+                    //         body: JSON.stringify(formFoodInMeal),
     //     })
     //         .then((response) => {
-    //         if (response.status === 201) {
-    //             response.json().then(Obj => {
-    //             setMeals(Obj)
-    //             // history.push('/')  // where should the user go after submitting the meal?
-    //         })      } else {
-    //             response.json().then((error) => {
-    //             alert(error)
-    //             })
-    //         }
-
-    //         })
-    //         .catch((error) => alert(error));
-    //         setFormFoodInMeal({
-    //             food: "",
-    //             quantity: "",
-    //             name: ""
-    //         })
-    //     };
-
-        // this setter needs to be passed from AddToMeal
-        // setFormFoodInMeal(defaultForm)
-
-
-        
-    return (
-        <div>
+        //         if (response.status === 201) {
+            //             response.json().then(Obj => {
+                //             setMeals(Obj)
+                //             // history.push('/')  // where should the user go after submitting the meal?
+                //         })      } else {
+                    //             response.json().then((error) => {
+                        //             alert(error)
+                        //             })
+                        //         }
+                        
+                        //         })
+                        //         .catch((error) => alert(error));
+                        //         setFormFoodInMeal({
+                            //             food: "",
+                            //             quantity: "",
+                            //             name: ""
+                            //         })
+                            //     };
+                            
+                            // this setter needs to be passed from AddToMeal
+                            // setFormFoodInMeal(defaultForm)
+                            
+                            
+                            
+                            
+                            return (
+                                <div>
             <form onSubmit={handleSubmit} >
                 <label htmlFor="meal_id">Meal:</label>
                     <select
@@ -120,10 +122,11 @@ const AddToMealForm = ({ setMeals }) => {
                         name="meal_id"
                         value={mealId}
                         onChange={(e) => setMealId(e.target.value)}
-                    >
+                        required
+                        >
                         <option value="">Select a Meal</option>
                         {meals.map((meal) => (
-                        <option key={meal.id} value={meal.id}>
+                            <option key={meal.id} value={meal.id}>
                             {meal.name}
                         </option>
                         ))}
@@ -134,6 +137,7 @@ const AddToMealForm = ({ setMeals }) => {
                         name="food_id"
                         value={foodId}
                         onChange={(e) => setFoodId(e.target.value)}
+                        required
                     >
                         <option value="">Select a Food</option>
                         {foods.map((food) => (
@@ -149,7 +153,7 @@ const AddToMealForm = ({ setMeals }) => {
                         name="number"
                         value={quantity}
                         onChange={(e) => setQuantity(e.target.value)}
-                    />
+                    required />
             <button type="submit">Add this to your meal</button>
 
             </form>
