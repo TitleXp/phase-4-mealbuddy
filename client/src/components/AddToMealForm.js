@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 
 // this form needs food.id, meal.id, and quantity
-const AddToMealForm = ({ setMeals, meals }) => {
+const AddToMealForm = ({ setMeals }) => {
 
     const [ foods, setFoods ] = useState([])
+    const [ meals, setMealss ] = useState([])
     const [ mealId, setMealId ] = useState("")
     const [ foodId, setFoodId ] = useState([])
     const [ quantity, setQuantity ] = useState([])
@@ -14,6 +15,12 @@ const AddToMealForm = ({ setMeals, meals }) => {
         food_id: foodId,
         quantity,
     };
+
+    useEffect(() => { // fetch meals
+        fetch("/meals")
+          .then((r) => r.json())
+          .then(setMealss);
+      }, []);
 
       useEffect(() => { // fetch foods
         fetch("/foods")
@@ -57,6 +64,7 @@ const AddToMealForm = ({ setMeals, meals }) => {
                     >
                         <option value="">Select a Meal</option>
                         {meals.map((meal) => (
+
                         <option key={meal.id} value={meal.id}>
                             {`${meal.name} - ${meal.date} `}
                         </option>
