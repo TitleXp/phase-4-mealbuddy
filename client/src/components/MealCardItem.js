@@ -29,10 +29,6 @@ import QuantityEditForm from './QuantityEditForm'
       setEditQuantity({...editQuantity, [e.target.name]: e.target.value})
     }
 
-  // console.log ("this is eachfoods ", eachFoods)
-
-  // const [ food_id ] = eachFoods
-
   const handleDeleteFood = () => { // delete each food per meal
     fetch(`/each_food_per_meals/${food.id}`, {
         method: "DELETE"
@@ -46,73 +42,39 @@ import QuantityEditForm from './QuantityEditForm'
           return m
         }
       }))
-      
-
-
-
-      // setMeals(meals.map(m => {
-      //   if(m.id == meal.id) {
-      //     return(
-      //     ...m,
-      //       each_food_per_meal: m.each_food_per_meal.filter(f => f.id !== each_food_per_meal.id)
-      //     )
-      //   } else {
-      //     return m
-      //   }
-      // }))
-
-  
   }
 
-// console.log(food)
-
 const { id } = food
-// console.log(id)
-// console.log(food.quantity)
 
-// const handleEditQuantity = (e) => {
-//     e.preventDefault()
-//     fetch(`/each_food_per_meals/${food.id}`,{
-//       method: "PATCH",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(editQuantity),
-//     })
-//     .then(response => {
-//       if(response.ok) {
-//         response.json()
-//         .then(editQty => {
-//           setFoods(currentFoods => {
-//             const updatedQuantity = currentFoods.map(qty =>{
-//               return qty.id === id ? editQty : qty
-//             })
-//             return updatedQuantity
-//           })
-//         })
-//       }
-//     })
-// }
 
-const handleEditQuantity = (e) => {
-  e.preventDefault();
-  // console.log('handleEditQuantity function called')
-  fetch(`/each_food_per_meals/${food.id}`,{
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(editQuantity),
-  })
-  .then(editQty => {
-    setEachFoods(currentFoods => {
-      const updatedQuantity = currentFoods.map(food => {
-        return food.id === id ? editQty : eachFoods;
-      });
-      return updatedQuantity;
-    });
-  })
-} 
+  const handleEditQuantity = (e) => {
+    e.preventDefault();
+    // console.log('handleEditQuantity function called')
+    fetch(`/each_food_per_meals/${food.id}`,{
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editQuantity),
+    })
+    setMeals(meals.map(m => {
+      if(m.id === meal.id) {
+        const mappedFoods = m.each_food_per_meal.map(f => f.id == food.id ? {...f, quantity: editQuantity.quantity} : f)
+        return {
+          ...m, each_food_per_meal: mappedFoods }
+      } else {
+        return m
+      }
+    }))
+    // .then(editQty => {
+    //   setEachFoods(currentFoods => {
+    //     const updatedQuantity = currentFoods.map(food => {
+    //       return food.id === id ? editQty : eachFoods;
+    //     });
+    //     return updatedQuantity;
+    //   });
+    // })
+  } 
 
 
 
@@ -139,7 +101,7 @@ const handleEditQuantity = (e) => {
       }
 
       <br/>
-      by: {user.username}
+      {/* by: {user.username} */}
       <button onClick={handleDeleteFood}>Delete food within this meal</button>
     </div>
   )
