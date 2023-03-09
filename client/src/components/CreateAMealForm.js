@@ -42,7 +42,6 @@ const CreateAMealForm = ({onSubmitMeal, user}) => {
     const { name, date, user_id } = mealForm
 
 
-    console.log(user)
   return (
     <div>
         Create a meal name and date

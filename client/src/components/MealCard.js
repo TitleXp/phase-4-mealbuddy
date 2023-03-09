@@ -16,6 +16,7 @@ const MealCard = ({ meal, user, setMeals, setFoods }) => {
     //     }
     // }, [meal, id]);
 
+    // console.log(meal)
 
     const mappedFood = meal.each_food_per_meal.map(food => {
         return (

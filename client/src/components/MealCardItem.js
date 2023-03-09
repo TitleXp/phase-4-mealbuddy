@@ -1,8 +1,18 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import QuantityEditForm from './QuantityEditForm'
 
  function MealCardItem({ food, user, setFoods }) {
+
+
+  const [ eachFoods, setEachFoods] = useState([])
+
+
+  useEffect(() => { // GET each foods
+    fetch('/each_food_per_meals')
+    .then(res => res.json())
+    .then(data => setEachFoods(data))
+  }, [])
 
    
    const [ showEditQtyForm, setShowEditQtyForm ] = useState(true)
@@ -19,15 +29,26 @@ import QuantityEditForm from './QuantityEditForm'
       setEditQuantity({...editQuantity, [e.target.name]: e.target.value})
     }
 
-  console.log ("this is food ", food)
+  console.log ("this is eachfoods ", eachFoods)
 
-  const handleDeleteFood = () => {
+  const handleDeleteFood = () => { // delete each food per meal
     fetch(`/each_food_per_meals/${food.id}`, {
         method: "DELETE"
     })
-    setFoods(currentFood => currentFood.filter(element => element.id !== food.id))
+    // console.log(food)
+    // setFoods(currentFoods => currentFoods.filter(element => element.id !== food.id))
+    setEachFoods(currentEachFoods => 
+      // console.log(currentEachFoods))
+       currentEachFoods.filter(element => element.id !== eachFoods.id))
+
+   
 }
+
+// console.log(food)
+
 const { id } = food
+// console.log(id)
+// console.log(food.quantity)
 
 // const handleEditQuantity = (e) => {
 //     e.preventDefault()
@@ -55,7 +76,7 @@ const { id } = food
 
 const handleEditQuantity = (e) => {
   e.preventDefault();
-  console.log('handleEditQuantity function called')
+  // console.log('handleEditQuantity function called')
   fetch(`/each_food_per_meals/${food.id}`,{
     method: "PATCH",
     headers: {
@@ -64,9 +85,9 @@ const handleEditQuantity = (e) => {
     body: JSON.stringify(editQuantity),
   })
   .then(editQty => {
-    setFoods(currentFoods => {
+    setEachFoods(currentFoods => {
       const updatedQuantity = currentFoods.map(food => {
-        return food.id === id ? editQty : food;
+        return food.id === id ? editQty : eachFoods;
       });
       return updatedQuantity;
     });
@@ -74,7 +95,6 @@ const handleEditQuantity = (e) => {
 } 
 
 
-// console.log(id)
 
   return (
     <div>
