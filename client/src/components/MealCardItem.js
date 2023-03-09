@@ -49,7 +49,6 @@ const { id } = food
 
   const handleEditQuantity = (e) => {
     e.preventDefault();
-    // console.log('handleEditQuantity function called')
     fetch(`/each_food_per_meals/${food.id}`,{
       method: "PATCH",
       headers: {
@@ -66,44 +65,36 @@ const { id } = food
         return m
       }
     }))
-    // .then(editQty => {
-    //   setEachFoods(currentFoods => {
-    //     const updatedQuantity = currentFoods.map(food => {
-    //       return food.id === id ? editQty : eachFoods;
-    //     });
-    //     return updatedQuantity;
-    //   });
-    // })
   } 
 
 
 
   return (
     <div>
-      {food.food.food_name}
-      Calories: {food.food.calories}
-      Carbs: {food.food.carbs}
-      Fats: {food.food.fats}
-      Proteins: {food.food.proteins}
-      Quantity{food.quantity}
+      <tr>
+        <td>{food.food.food_name}</td>
+        <td>{food.food.calories}</td>
+        <td>{food.food.carbs}</td>
+        <td>{food.food.fats}</td>
+        <td>{food.food.proteins}</td>
+        <td>{food.quantity}</td>
 
-      {showEditQtyForm ? 
-      <button onClick={handleClick}>Edit quantity</button> :
-      // 'edit quantity' form here
-      <> 
-        <button onClick={handleClick}>cancel change</button>
-        <form onSubmit={handleEditQuantity}>
-
-          <input type="number" name="quantity" value={editQuantity.quantity} onChange={handleChange}/>
-          <input type="submit" value="update" />
-        </form>
-      </>
-      }
-
-      <br/>
-      {/* by: {user.username} */}
-      <button onClick={handleDeleteFood}>Delete food within this meal</button>
-    </div>
+        <td>{showEditQtyForm ? 
+        <button class="ui mini button" onClick={handleClick}>Edit quantity</button> :
+        // 'edit quantity' form here
+        <>
+          <button class="ui mini button" onClick={handleClick}>cancel change</button>
+            <form onSubmit={handleEditQuantity}>
+              <input class="ui input" type="number" name="quantity" value={editQuantity.quantity} onChange={handleChange}/>
+              <input type="submit" value="update" />
+            </form>
+        </>
+        }</td>
+        <td>
+          <button class="ui mini button" onClick={handleDeleteFood}>x</button>
+        </td>
+       </tr>
+      </div>
   )
 }
 
