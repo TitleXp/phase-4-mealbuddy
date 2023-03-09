@@ -3,7 +3,7 @@ import MealCardItem from './MealCardItem'
 // import { useParams } from 'react-router-dom';
 // import { useEffect } from 'react';
 
-const MealCard = ({ meal, user, setMeals, setFoods }) => {
+const MealCard = ({ meal, meals, user, setMeals, setFoods, deleteEachFoods, eachFoods }) => {
 
     // const { id } = useParams()
 
@@ -20,7 +20,7 @@ const MealCard = ({ meal, user, setMeals, setFoods }) => {
 
     const mappedFood = meal.each_food_per_meal.map(food => {
         return (
-            <MealCardItem key={food.id} food={food} user={user} setFoods={setFoods}/>
+            <MealCardItem key={food.id} food={food} meals={meals} user={user} setFoods={setFoods} deleteEachFoods={deleteEachFoods} eachFoods={eachFoods} setMeals={setMeals} meal={meal}/>
         )
     })
 
