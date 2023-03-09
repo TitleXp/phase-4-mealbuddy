@@ -1,7 +1,5 @@
 import React, {useState} from 'react'
 
-
-
 const CreateAMealForm = ({onSubmitMeal, user}) => {
 
     const defaultInputs = {
@@ -9,8 +7,7 @@ const CreateAMealForm = ({onSubmitMeal, user}) => {
         date: Date(),
         user_id: user.id
     }
-    
-    
+        
     const [mealForm, setMealForm] = useState(defaultInputs)
 
     
@@ -32,7 +29,6 @@ const CreateAMealForm = ({onSubmitMeal, user}) => {
           },
           body: JSON.stringify({
             ...mealForm,
-            // user_id: mealForm.user_id
           })
         }
         return fetch('/meals', config)

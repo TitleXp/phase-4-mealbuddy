@@ -2,7 +2,7 @@ class MealsController < ApplicationController
     before_action :find_meal, only: [:show, :update, :destroy]
 
     def index
-        meals = Meal.all
+        meals = Meal.all.where(user_id: session[:user_id])
         render json: meals, include: ['each_food_per_meal', 'each_food_per_meal.food'] , status: :ok
     end
 
