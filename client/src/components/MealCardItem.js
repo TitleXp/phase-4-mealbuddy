@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import QuantityEditForm from './QuantityEditForm'
 
- function MealCardItem({ food, user, setFoods }) {
+ function MealCardItem({ food, user, setFoods, setMeals, meals, meal }) {
 
 
   const [ eachFoods, setEachFoods] = useState([])
@@ -29,20 +29,40 @@ import QuantityEditForm from './QuantityEditForm'
       setEditQuantity({...editQuantity, [e.target.name]: e.target.value})
     }
 
-  console.log ("this is eachfoods ", eachFoods)
+  // console.log ("this is eachfoods ", eachFoods)
+
+  // const [ food_id ] = eachFoods
 
   const handleDeleteFood = () => { // delete each food per meal
     fetch(`/each_food_per_meals/${food.id}`, {
         method: "DELETE"
     })
-    // console.log(food)
-    // setFoods(currentFoods => currentFoods.filter(element => element.id !== food.id))
-    setEachFoods(currentEachFoods => 
-      // console.log(currentEachFoods))
-       currentEachFoods.filter(element => element.id !== eachFoods.id))
+      setMeals(meals.map(m => {
+        if(m.id === meal.id) {
+          const filteredFoods = m.each_food_per_meal.filter(f => f.id !== food.id)
+          return {
+            ...m, each_food_per_meal: filteredFoods }
+        } else {
+          return m
+        }
+      }))
+      
 
-   
-}
+
+
+      // setMeals(meals.map(m => {
+      //   if(m.id == meal.id) {
+      //     return(
+      //     ...m,
+      //       each_food_per_meal: m.each_food_per_meal.filter(f => f.id !== each_food_per_meal.id)
+      //     )
+      //   } else {
+      //     return m
+      //   }
+      // }))
+
+  
+  }
 
 // console.log(food)
 
