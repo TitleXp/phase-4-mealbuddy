@@ -12,7 +12,9 @@ const CreateAMealForm = ({onSubmitMeal, user}) => {
 
     const defaultInputs = {
         name: '',
-        date: Date(dateString), //dateString,
+        date: Date(), 
+        // date: dateString,
+
         user_id: user.id
     }
         
