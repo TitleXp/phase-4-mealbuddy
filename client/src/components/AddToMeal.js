@@ -5,7 +5,7 @@ import FoodList from './FoodList'
 import SearchFood from './SearchFood';
 
 
-const AddToMeal = ({ foods, meals, setMeals }) => {
+const AddToMeal = ({ foods, meals, setMeals, setFoods }) => {
 
     // const [foods, setFoods] = useState([]) // foods array
     // const [meals, setMeals] = useState([]) // meals array for the form
@@ -30,12 +30,12 @@ const AddToMeal = ({ foods, meals, setMeals }) => {
    return (
        <div>
            Add a food to an existing meal:
-           <AddToMealForm meals={meals} setMeals={setMeals} foods={foods}/>
+           <AddToMealForm meals={meals} setMeals={setMeals} setFoods={setFoods} foods={foods}/>
            <br/>
            Search foods:
             <SearchFood searchFood={searchFood} setSearchFood={setSearchFood} />
             <br/>
-           All foods in database:
+           Foods:
            <FoodList foods={filteredFoods}/>
            <CreateAFoodForm/>
 
