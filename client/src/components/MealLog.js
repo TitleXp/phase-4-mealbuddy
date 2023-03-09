@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import MealList from "./MealList"
 import CreateAMealForm from "./CreateAMealForm"
+import { Grid } from "semantic-ui-react"
 
 const MealLog = ({ user, setFoods, meals, setMeals }) => {
 
@@ -19,12 +20,18 @@ const MealLog = ({ user, setFoods, meals, setMeals }) => {
 
 
     return (
-        <div>
-            <h1>{user.name}'s Meal Log</h1>
-            Daily Calorie Budget: {user.calorie_goal}
-            <CreateAMealForm onSubmitMeal={addMeal} user={user}/>
-            <MealList meals={meals} user={user} setMeals={setMeals} setFoods={setFoods}/>
-        </div>
+        <Grid>
+            <Grid.Column width={7} >
+                <h1 style={{textAlign:"center"}}>{user.name}'s Meal Log</h1>
+                Daily Calorie Budget: {user.calorie_goal}
+                <CreateAMealForm onSubmitMeal={addMeal} user={user}/>
+            </Grid.Column>
+
+            <Grid.Column width={9}>
+                <MealList meals={meals} user={user} setMeals={setMeals} setFoods={setFoods}/>
+            </Grid.Column>
+            
+        </Grid>
     );
 }
 
