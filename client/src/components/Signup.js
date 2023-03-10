@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-const Signup = ({ handleLoginSignup, setCurrentUser }) => {
+const Signup = ({ handleLoginSignup, setCurrentUser, formErrors, setFormErrors }) => {
 
     const [newUser, setNewUser] = useState({
         username: "",
@@ -13,6 +13,8 @@ const Signup = ({ handleLoginSignup, setCurrentUser }) => {
         calorie_goal: "",
         weight: ""
     })
+    
+    // const [ formErrors, setFormErrors ] = useState([])
 
     const history = useHistory()
     
@@ -34,10 +36,14 @@ const Signup = ({ handleLoginSignup, setCurrentUser }) => {
                 response.json().then(userObj => {
                 setCurrentUser(userObj)
                 history.push('/meals')
-            })      } else {
-                response.json().then((error) => {
-                alert(error)
-                })
+            })      
+            } else {
+                // response.json().then((error) => {
+                // alert(error)
+                // })
+                response.json().then((err) => setFormErrors(err.errors))
+                console.log(formErrors)
+                console.log("inside else statement")
             }
             })
             .catch((error) => alert(error));
@@ -79,6 +85,13 @@ const Signup = ({ handleLoginSignup, setCurrentUser }) => {
             </div>
 
           <input type="submit" value="Create New User" />
+          {formErrors.length > 0
+        ? formErrors.map((err) => (
+            <p key={err} style={{ color: "red" }}>
+              {err}
+            </p>
+          ))
+        : null}
 
         </form>
 

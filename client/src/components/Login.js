@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-const Login = ( { setCurrentUser, handleLoginSignup }) => {
+const Login = ( { setCurrentUser, handleLoginSignup, formErrors, setFormErrors }) => {
 
     const history = useHistory()
 
@@ -10,6 +10,7 @@ const Login = ( { setCurrentUser, handleLoginSignup }) => {
         username: "",
         password: ""
     });
+    
 
     // const handleChange = ({target: {name, value}}) => {
     //     setUser(current => ({
@@ -38,7 +39,11 @@ const Login = ( { setCurrentUser, handleLoginSignup }) => {
                     history.push('/meals')
                 })
             } else {
-                res.json().then(errorObj => alert(errorObj.error))
+                // res.json().then(errorObj => alert(errorObj.error))
+                res.json().then((err) => setFormErrors(err.errors))
+                console.log(formErrors)
+                console.log("inside else statement")
+
             }
         })
         .catch(error => alert(error))
@@ -55,14 +60,23 @@ const Login = ( { setCurrentUser, handleLoginSignup }) => {
         <form onSubmit={handleSubmit}>
 
             <div>
-                <input type="text" onChange={handleChange} value={user.username} name="username" placeholder='Username' />
+                <input type="text" onChange={handleChange} value={user.username} name="username" placeholder='Username' required />
             </div>
 
             <div>
-                <input type="password" onChange={handleChange} value={user.password} name="password" placeholder='Password'/>
+                <input type="password" onChange={handleChange} value={user.password} name="password" placeholder='Password' required />
             </div>
 
             <input type="submit" value="Login" />
+
+            {formErrors.length > 0
+             ? formErrors.map((err) => (
+            <p key={err} style={{ color: "red" }}>
+              {err}
+            </p>
+             ))
+             : null}
+
         </form>
     </div>
     );

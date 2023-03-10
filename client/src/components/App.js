@@ -22,6 +22,7 @@ function App() {
     const [showLogin, setShowLogin] = useState(true)
     const [foods, setFoods] = useState([]) // foods array
     const [meals, setMeals] = useState([]) // meals array for the form
+    const [ formErrors, setFormErrors ] = useState([])
 
 
     const handleLoginSignup = () => {
@@ -95,8 +96,8 @@ if(!currentUser) { // IF no user logged in, what can they see?
             <Route exact path="/login" >
                 <>
                     {showLogin?
-                        <Login setCurrentUser={setCurrentUser} handleLoginSignup={handleLoginSignup}/> : 
-                        <Signup setCurrentUser={setCurrentUser} handleLoginSignup={handleLoginSignup}/>
+                        <Login formErrors={formErrors} setFormErrors={setFormErrors} setCurrentUser={setCurrentUser} handleLoginSignup={handleLoginSignup}/> : 
+                        <Signup formErrors={formErrors} setFormErrors={setFormErrors} setCurrentUser={setCurrentUser} handleLoginSignup={handleLoginSignup}/>
                     }
                 </>
             </Route>
