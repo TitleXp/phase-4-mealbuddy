@@ -1,4 +1,5 @@
 import React from 'react';
+import mealbuddylogo from '../mealbuddylogo.png'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
 
@@ -22,17 +23,15 @@ const NavBar = ( { setCurrentUser, currentUser } ) => {
 
     if(!currentUser) {
         return(
+            <div style={{textAlign: "center"}}>
+                <img src={mealbuddylogo} alt="mealbuddylogo" ></img>
+                    <div style={{textAlign: "center"}}>    
 
-            <div>    
+                        <Link to="/login">
+                            <h1>Login</h1> 
+                        </Link>
 
-                <Link to="/community">
-                    Community
-                </Link> 
-
-                <Link to="/login">
-                    Login
-                </Link>
-
+                    </div>
             </div>
         )
     }
@@ -42,22 +41,22 @@ const NavBar = ( { setCurrentUser, currentUser } ) => {
         <div style={{backgroundColor: "#3a6ef0"}} class="ui menu">
             {/* Welcome, {currentUser.username} */}
             <Link to="/meals">
-                <a style={{color: "white"}} class="item">Meal Log</a> 
+                <button style={{color: "white"}} class="item">Meal Log</button> 
             </Link>
 
             <Link to="/meals/food_item/new" >
-                <a style={{color: "white"}} class="item">Add To Meal</a> 
+                <button style={{color: "white"}} class="item">Add To Meal</button> 
             </Link>        
 
             <Link to="/community">
-                <a style={{color: "white"}} class="item">Community</a> 
+                <button style={{color: "white"}} class="item">Community</button> 
             </Link> 
 
             <Link to="/profile">
-                <a style={{color: "white"}} class="item">Profile</a> 
+                <button style={{color: "white"}} class="item">Profile</button> 
             </Link>
 
-            <a style={{color: "white"}} class="item" onClick={handleLogOut}>Log Out</a>
+            <button style={{color: "white"}} class="item" onClick={handleLogOut}>Log Out</button>
 
         </div>
     );

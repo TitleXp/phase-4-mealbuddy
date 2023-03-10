@@ -29,7 +29,7 @@ const AddToMeal = ({ foods, meals, setMeals }) => {
 
    return (
        <div>
-            <h1>Add Food To An Existing Meal:</h1>
+            <h1 style={{margin: "20px"}}>Add Food To An Existing Meal</h1>
             <div style={{margin: "50px"}} > 
                 <AddToMealForm meals={meals} setMeals={setMeals} foods={foods}/>
            </div>

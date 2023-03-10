@@ -11,8 +11,8 @@ const SearchFood = ({searchFood, setSearchFood}) => {
     //   }
 
     return (
-        <div>
-            <label>Search Foods  </label>
+        <div class="ui small icon input" style={{margin: "20px"}} >
+            <i class="search icon"></i>
             <input
                 value={searchFood}
                 type='text'

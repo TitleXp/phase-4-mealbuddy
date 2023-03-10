@@ -2,6 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+
+
 const Login = ( { setCurrentUser, handleLoginSignup }) => {
 
     const history = useHistory()
@@ -49,22 +51,23 @@ const Login = ( { setCurrentUser, handleLoginSignup }) => {
     }
 
     return (
-        <div>
-        Sign up
-        <button onClick={handleLoginSignup}>Join Meal Buddy Here!</button>
-        <form onSubmit={handleSubmit}>
+        <div style={{ textAlign: "center"}}>
+                <div style={{ marginLeft: "200px", marginRight: "200px" }}>
+                    <form class="ui form" style={{textAlign:'center'}} onSubmit={handleSubmit}>
 
-            <div>
-                <input type="text" onChange={handleChange} value={user.username} name="username" placeholder='Username' />
-            </div>
+                        <div style={{margin: "20px"}} >
+                            <input type="text" onChange={handleChange} value={user.username} name="username" placeholder='Username' />
+                        </div>
 
-            <div>
-                <input type="password" onChange={handleChange} value={user.password} name="password" placeholder='Password'/>
-            </div>
+                        <div style={{margin: "20px"}} >
+                            <input type="password" onChange={handleChange} value={user.password} name="password" placeholder='Password'/>
+                        </div>
 
-            <input type="submit" value="Login" />
-        </form>
-    </div>
+                        <input style={{margin: "20px"}} class="ui button" type="submit" value="Login" />
+                    </form>
+                    <button class="ui button" onClick={handleLoginSignup}>Sign Up For MealBuddy</button>
+                    </div>
+        </div>            
     );
 }
 
