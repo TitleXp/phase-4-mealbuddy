@@ -124,7 +124,7 @@ const AddToMealForm = ({ setMeals }) => {
                         <option value="">Select a Meal</option>
                         {meals.map((meal) => (
                         <option key={meal.id} value={meal.id}>
-                            {meal.name}
+                            {meal.name} - {meal.date}
                         </option>
                         ))}
                     </select>

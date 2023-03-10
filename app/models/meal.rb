@@ -4,7 +4,7 @@ class Meal < ApplicationRecord
   has_many :foods, through: :each_food_per_meal
 
   validates :name, :user_id, :date, presence: true
-  validates :name, uniqueness: { scope: :date,
-  message: "Meal name should be unique for today!" }
+  # validates :name, uniqueness: { scope: :date,
+  # message: "Meal name should be unique for today!" }
 
 end
