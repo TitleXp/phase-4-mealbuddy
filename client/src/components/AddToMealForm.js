@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { useHistory } from 'react-router-dom'
 
 // this form needs food.id, meal.id, and quantity
 const AddToMealForm = ({ setMeals }) => {
@@ -15,14 +15,8 @@ const AddToMealForm = ({ setMeals }) => {
         food_id: foodId,
         quantity
     };
-
-    // const [formData, setFormData] = useState({
-    //         meal_id: mealId,
-    //         food_id: foodId,
-    //         quantity,
-    // })
-
     
+    const { history } = useHistory()
     
     useEffect(() => { // fetch meals
         fetch("/meals")
@@ -38,11 +32,6 @@ const AddToMealForm = ({ setMeals }) => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        // const formData = {
-            //     meal_id: mealId,
-            //     food_id: foodId,
-            //     quantity,
-            // };
             fetch("/each_food_per_meals", {
                 method: "POST",
                 headers: {
@@ -53,9 +42,9 @@ const AddToMealForm = ({ setMeals }) => {
                 if (r.ok) {
                     r.json().then(Obj => {
                         setMeals(Obj)
-                        // setFormData(formData)
+                        // setFormData(formData) setJordanArray([...jordanArray, newShoe])
                     })
-                    // history.push()
+                    history.push("/meals")
                 } else {
              r.json().then((error) => {
                 alert(error)
