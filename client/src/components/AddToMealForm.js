@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
+// import { useHistory } from 'react-router-dom';
+
 
 
 // this form needs food.id, meal.id, and quantity
 const AddToMealForm = ({ setMeals }) => {
+
+    // const history = useHistory();
+
 
     const [ foods, setFoods ] = useState([])
     const [ meals, setMealss ] = useState([])
@@ -31,27 +36,44 @@ const AddToMealForm = ({ setMeals }) => {
       const handleSubmit = (e) => {
         e.preventDefault();
         fetch("/each_food_per_meals", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-        }).then((r) => {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        })
+          .then((r) => {
             if (r.ok) {
-                r.json().then(Obj => {
-                    setMeals(Obj)
-                    // setFormData(formData)
-                })
-                // history.push()
-        } else {
-             r.json().then((error) => {
-                alert(error)
-        }
-        )
-      }
-    });
-      }
-
+              return r.json();
+            } else {
+              throw new Error("Unable to add food to meal");
+            }
+          })
+          .then((Obj) => {
+            setMeals(prevMeals => {
+  return prevMeals.map(m => {
+    if (m.id === mealId) {
+      return {
+        ...m,
+        each_food_per_meal: [
+          ...m.each_food_per_meal,
+          Obj
+        ]
+      };
+    } else {
+      return m;
+    }
+  });
+});
+            setMealId("");
+            setFoodId("");
+            setQuantity("");
+          })
+          .catch((error) => {
+            alert(error.message);
+          });
+      };
+      
     return (
         <div>
             <form onSubmit={handleSubmit} >
