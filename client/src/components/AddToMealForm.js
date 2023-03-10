@@ -55,50 +55,6 @@ const AddToMealForm = ({ setMeals }) => {
     });
 }
 
-// const [formFoodInMeal, setFormFoodInMeal] = useState({
-    //     food: "",
-    //     quantity: "",
-    //     name: ""
-    //     // name: `${meals.id}` // meal name
-    // })
-    
-    
-    // const handleChange = (e) => {
-        //     setFormFoodInMeal({...formFoodInMeal, [e.target.name]: e.target.value})
-        //   }
-        
-        //   const handleSubmit = (e) => {
-            //     e.preventDefault();
-            //     fetch('/each_food_per_meals', {
-                //         method: 'POST',
-                //         headers: {
-                    //         'Content-Type': 'application/json',
-                    //         },
-                    //         body: JSON.stringify(formFoodInMeal),
-    //     })
-    //         .then((response) => {
-        //         if (response.status === 201) {
-            //             response.json().then(Obj => {
-                //             setMeals(Obj)
-                //             // history.push('/')  // where should the user go after submitting the meal?
-                //         })      } else {
-                    //             response.json().then((error) => {
-                        //             alert(error)
-                        //             })
-                        //         }
-                        
-                        //         })
-                        //         .catch((error) => alert(error));
-                        //         setFormFoodInMeal({
-                            //             food: "",
-                            //             quantity: "",
-                            //             name: ""
-                            //         })
-                            //     };
-                            
-                            // this setter needs to be passed from AddToMeal
-                            // setFormFoodInMeal(defaultForm)
-                            
                             
                             
                             
