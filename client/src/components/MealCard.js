@@ -34,14 +34,31 @@ const MealCard = ({ meal, meals, user, setMeals, setFoods, deleteEachFoods, each
 
     
     return (
-        <div>
-            <h4>{meal.name} ...
-            {meal.date}
-            <button onClick={handleDeleteMeal} >Delete Meal</button>
-            </h4>
-            {mappedFood}
+        <div style={{padding: "80px"}}>
+            <label>
+                <th>
+                    <h3 style={{padding: "12px"}} >{meal.name}-{meal.date}</h3>
+                </th>
+            </label>
+            <table class="ui table" >
+                <thead>
+                    <tr>
+                        <th>Food</th>
+                        <th>Calories</th>
+                        <th>Carbs</th>
+                        <th>Fats</th>
+                        <th>Protein</th>
+                        <th>Qty</th>
+                        <th><button class="ui mini button" onClick={handleDeleteMeal} >Delete Meal</button></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {mappedFood}
+                </tbody>
+            </table>
         </div>
     );
 }
 
 export default MealCard;
+

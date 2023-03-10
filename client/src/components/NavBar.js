@@ -39,29 +39,25 @@ const NavBar = ( { setCurrentUser, currentUser } ) => {
 
 
     return (
-        <div>
+        <div style={{backgroundColor: "#3a6ef0"}} class="ui menu">
             {/* Welcome, {currentUser.username} */}
             <Link to="/meals">
-                Meal Log    
+                <a style={{color: "white"}} class="item">Meal Log</a> 
             </Link>
 
             <Link to="/meals/food_item/new" >
-                Add To Meal
+                <a style={{color: "white"}} class="item">Add To Meal</a> 
             </Link>        
 
             <Link to="/community">
-                Community
+                <a style={{color: "white"}} class="item">Community</a> 
             </Link> 
 
             <Link to="/profile">
-                Profile
+                <a style={{color: "white"}} class="item">Profile</a> 
             </Link>
 
-            {/* <Link to="/login">
-                Login
-            </Link> */}
-
-            <button onClick={handleLogOut}>Log Out</button>
+            <a style={{color: "white"}} class="item" onClick={handleLogOut}>Log Out</a>
 
         </div>
     );

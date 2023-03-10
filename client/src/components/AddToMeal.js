@@ -29,15 +29,13 @@ const AddToMeal = ({ foods, meals, setMeals }) => {
 
    return (
        <div>
-           Add a food to an existing meal:
-           <AddToMealForm meals={meals} setMeals={setMeals} foods={foods}/>
-           <br/>
-           Search foods:
+            <h1>Add Food To An Existing Meal:</h1>
+            <div style={{margin: "50px"}} > 
+                <AddToMealForm meals={meals} setMeals={setMeals} foods={foods}/>
+           </div>
             <SearchFood searchFood={searchFood} setSearchFood={setSearchFood} />
-            <br/>
-           All foods in database:
            <FoodList foods={filteredFoods}/>
-           <CreateAFoodForm/>
+           {/* <CreateAFoodForm/> */}
 
        </div>
    );

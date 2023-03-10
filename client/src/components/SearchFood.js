@@ -12,6 +12,7 @@ const SearchFood = ({searchFood, setSearchFood}) => {
 
     return (
         <div>
+            <label>Search Foods  </label>
             <input
                 value={searchFood}
                 type='text'

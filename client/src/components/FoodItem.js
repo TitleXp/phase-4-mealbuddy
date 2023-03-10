@@ -3,14 +3,13 @@ import React from 'react';
 const FoodItem = ({food}) => {
 
     return (
-        <div>
-            {food.food_name}
-            {food.carbs}
-            {food.fats}
-            {food.proteins}
-            {food.calories}
-
-        </div>
+        <tr>
+            <td> {food.food_name}</td>
+            <td> {food.calories}</td>
+            <td> {food.carbs}</td>
+            <td> {food.fats}</td>
+            <td> {food.proteins}</td>    
+        </tr>
     );
 }
 

@@ -79,31 +79,28 @@ const { id } = food
 
 
   return (
-    <div>
-      {food.food.food_name}
-      Calories: {food.food.calories}
-      Carbs: {food.food.carbs}
-      Fats: {food.food.fats}
-      Proteins: {food.food.proteins}
-      Quantity{food.quantity}
+    <tr>
+        <td><h3>{food.food.food_name}</h3></td>
+        <td><h3>{food.food.calories}</h3></td>
+        <td><h3>{food.food.carbs}</h3></td>
+        <td><h3>{food.food.fats}</h3></td>
+        <td><h3>{food.food.proteins}</h3></td>
+        <td><h3>{food.quantity}</h3></td>
 
-      {showEditQtyForm ? 
-      <button onClick={handleClick}>Edit quantity</button> :
-      // 'edit quantity' form here
-      <> 
-        <button onClick={handleClick}>cancel change</button>
-        <form onSubmit={handleEditQuantity}>
-
-          <input type="number" name="quantity" value={editQuantity.quantity} onChange={handleChange}/>
-          <input type="submit" value="update" />
-        </form>
-      </>
-      }
-
-      <br/>
-      {/* by: {user.username} */}
-      <button onClick={handleDeleteFood}>Delete food within this meal</button>
-    </div>
+        <td>{showEditQtyForm ? 
+        <button class="ui mini button" onClick={handleClick}>Edit quantity</button> :
+        // 'edit quantity' form here
+        <>
+          <button class="ui mini button" onClick={handleClick}>cancel change</button>
+            <form onSubmit={handleEditQuantity}>
+              <input class="ui input" type="number" name="quantity" value={editQuantity.quantity} onChange={handleChange}/>
+              <input type="submit" value="update" />
+            </form>
+        </>
+        }
+          <button class="ui mini button" onClick={handleDeleteFood}>x</button>
+        </td>
+      </tr>
   )
 }
 
