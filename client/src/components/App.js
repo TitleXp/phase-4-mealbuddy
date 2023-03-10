@@ -45,10 +45,7 @@ function App() {
           }
           fetchAuthorizedUser()
         }, [])
-      
-
-    // console.log(currentUser)
-
+        
     useEffect(() => { // GET foods
         fetch('/foods')
         .then(res => res.json())
@@ -61,32 +58,11 @@ function App() {
         .then(data => setMeals(data))
     }, [] )
 
-
 if(!currentUser) { // IF no user logged in, what can they see?
     return(
         <div>
             <NavBar />
             <Switch>
-
-            {/* <Route exact path= "/">
-                <Login />
-            </Route>
-
-            <Route exact path= "/meals">
-                <MealLog />
-            </Route>
-
-            <Route path= "/meals/food_item/new">
-                <AddToMeal />
-            </Route>
-
-            <Route exact path="/foods/new" >
-                <CreateAFoodForm />
-            </Route>
-
-            <Route exact path="/profile" >
-                <Profile />
-            </Route> */}
 
             <Route exact path="/community" >
                 <Community />
@@ -116,11 +92,11 @@ if(!currentUser) { // IF no user logged in, what can they see?
           </Route>
 
           <Route exact path= "/meals">
-              <MealLog user={currentUser} setFoods={setFoods}/>
+              <MealLog user={currentUser} meals={meals} setMeals={setMeals} setFoods={setFoods}/>
           </Route>
 
           <Route path= "/meals/food_item/new">
-              <AddToMeal foods={foods} meals={meals} setMeals={setMeals}/>
+              <AddToMeal foods={foods} setFoods={setFoods} meals={meals} setMeals={setMeals}/>
           </Route>
 
           <Route exact path="/foods/new" >
@@ -134,16 +110,6 @@ if(!currentUser) { // IF no user logged in, what can they see?
           <Route exact path="/community" >
               <Community />
           </Route>
-
-          {/* <Route exact path="/login" >
-            <>
-                {showLogin?
-                    <Login setCurrentUser={setCurrentUser} handleLoginSignup={handleLoginSignup}/> : 
-                    <Signup setCurrentUser={setCurrentUser} handleLoginSignup={handleLoginSignup}/>
-                }
-            </>
-          </Route> */}
-
 
         </Switch>
     </div>

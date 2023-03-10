@@ -2,20 +2,22 @@ import React, {useEffect, useState} from 'react';
 import MealList from "./MealList"
 import CreateAMealForm from "./CreateAMealForm"
 
-const MealLog = ({ user, setFoods }) => {
+const MealLog = ({ user, setFoods, meals, setMeals }) => {
 
-    const [meals, setMeals] = useState([]);
+    // const [meals, setMeals] = useState([]);
 
-    useEffect(() => {
-        fetch('/meals')
-            .then(res => res.json())
-            .then(data => setMeals(data))
-    },[])
+    // useEffect(() => {
+    //     fetch('/meals')
+    //         .then(res => res.json())
+    //         .then(data => setMeals(data))
+    // },[])
 
     const addMeal = newMeal => {
         setMeals([...meals, newMeal])
     }
   
+
+
     return (
         <div>
             <h1>{user.name}'s Meal Log</h1>

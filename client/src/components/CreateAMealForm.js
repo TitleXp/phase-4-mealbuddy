@@ -1,16 +1,23 @@
 import React, {useState} from 'react'
 
-
-
 const CreateAMealForm = ({onSubmitMeal, user}) => {
+
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const dateString = `${year}-${month}-${day}`; // returns a string like "2023-03-09"
+    console.log(dateString); // output: "2023-03-09"
+    
 
     const defaultInputs = {
         name: '',
-        date: Date(),
+        date: Date(), 
+        // date: dateString,
+
         user_id: user.id
     }
-    
-    
+        
     const [mealForm, setMealForm] = useState(defaultInputs)
 
     
@@ -32,7 +39,6 @@ const CreateAMealForm = ({onSubmitMeal, user}) => {
           },
           body: JSON.stringify({
             ...mealForm,
-            // user_id: mealForm.user_id
           })
         }
         return fetch('/meals', config)
