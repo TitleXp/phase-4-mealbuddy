@@ -43,18 +43,17 @@ const CreateAMealForm = ({onSubmitMeal, user}) => {
 
 
   return (
-    <div>
-        Create a meal name and date
-        <form onSubmit={handleSubmit}>
-            Meal Name:
+    <div style={{marginRight: "90px"}}>
+        <h4></h4>
+        <h4>Create a meal name and date</h4>
+        <form class='ui form' onSubmit={handleSubmit}>
+            <label>Meal Name:</label>
             <input value={name} onChange={handleChange} type="text" name="name" placeholder="Brkfst/Lnch/Dnnr/Snack" required/>
-            Meal Date:
+            <label>Meal Date:</label>
             <input value={date} onChange={handleChange} type="date" name="date" required/>
-            {/* <br/> */}
-            {/* by: {user.name} */}
-            <br/>
-        <button type="submit">Add this meal to your profile</button>
+        <button style={{marginTop: "10px"}} class="ui button" type="submit">Add this meal to your profile</button>
         </form>
+
     </div>
   )
 }

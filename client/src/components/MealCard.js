@@ -34,7 +34,7 @@ const MealCard = ({ meal, meals, user, setMeals, setFoods, deleteEachFoods, each
 
     
     return (
-        <div style={{padding: "12px"}}>
+        <div style={{padding: "80px"}}>
             <label>
                 <th>
                     <h3 style={{padding: "12px"}} >{meal.name}-{meal.date}</h3>

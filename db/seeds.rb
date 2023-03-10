@@ -5,7 +5,7 @@ EachFoodPerMeal.destroy_all
 puts "Deleting old data"
 
 puts "Creating User" 
-u10 = User.create!(calorie_goal: 1000, name: "John Doe", dob: "1990-05-05", weight: 200, username: "JD", email: "johndoe@gmail.com", password: "12345")
+u10 = User.create!(calorie_goal: 2500, name: "John Doe", dob: "1990-05-05", weight: 200, username: "JD", email: "johndoe@gmail.com", password: "12345")
 
 puts "Creating foods/ingredients"
 100.times do 

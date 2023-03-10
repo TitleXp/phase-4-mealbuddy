@@ -18,21 +18,21 @@ const MealLog = ({ user, setFoods }) => {
     }
   
     return (
- 
-       <Grid>
-            <Grid.Column width={7} >
-                <h1 style={{textAlign:"center"}}>{user.name}'s Meal Log</h1>
-                Daily Calorie Budget: {user.calorie_goal}
+        <>
+    <Grid>
+       <Grid.Row columns={2} >
+            <Grid.Column floated="left" >
+                <h1 style={{padding: "12px", textAlign:"center"}}>{user.name}'s Meal Log</h1>
+                <h1 style={{padding: "12px", textAlign:"center"}} class="ui huge header" >Daily Calorie Budget: {user.calorie_goal}</h1>
+            </Grid.Column>
+            <Grid.Column floated="right" >
                 <CreateAMealForm onSubmitMeal={addMeal} user={user}/>
             </Grid.Column>
-
-            <Grid.Column width={9}>
-                <MealList meals={meals} user={user} setMeals={setMeals} setFoods={setFoods}/>
-            </Grid.Column>
-            
-        </Grid>
-     
-    );
+        </Grid.Row>
+    </Grid>
+            <MealList meals={meals} user={user} setMeals={setMeals} setFoods={setFoods}/>
+        </>  
+  );
 }
 
 export default MealLog;
