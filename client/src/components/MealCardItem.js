@@ -66,14 +66,6 @@ const { id } = food
         return m
       }
     }))
-    // .then(editQty => {
-    //   setEachFoods(currentFoods => {
-    //     const updatedQuantity = currentFoods.map(food => {
-    //       return food.id === id ? editQty : eachFoods;
-    //     });
-    //     return updatedQuantity;
-    //   });
-    // })
   } 
 
 

@@ -22,6 +22,7 @@ function App() {
     const [showLogin, setShowLogin] = useState(true)
     const [foods, setFoods] = useState([]) // foods array
     const [meals, setMeals] = useState([]) // meals array for the form
+    // const [mealFoodsArray, setMealFoodsArray] = useState([])
 
 
     const handleLoginSignup = () => {
@@ -52,11 +53,11 @@ function App() {
         .then(data => setFoods(data))
       }, [])
 
-    useEffect(() => { // GET meals for the form
+    useEffect(() => { // GET meals for the form, which has meals include: each_food_per_meal
         fetch('/meals')
         .then(res => res.json())
         .then(data => setMeals(data))
-    }, [] )
+    }, [meals] )
 
 if(!currentUser) { // IF no user logged in, what can they see?
     return(

@@ -1,16 +1,7 @@
 import React, { useState, useEffect } from 'react';
-// import { useHistory } from 'react-router-dom';
 
+const AddToMealForm = ({ meals, foods, setMeals }) => {
 
-
-// this form needs food.id, meal.id, and quantity
-const AddToMealForm = ({ setMeals }) => {
-
-    // const history = useHistory();
-
-
-    const [ foods, setFoods ] = useState([])
-    const [ meals, setMealss ] = useState([])
     const [ mealId, setMealId ] = useState("")
     const [ foodId, setFoodId ] = useState([])
     const [ quantity, setQuantity ] = useState([])
@@ -20,18 +11,6 @@ const AddToMealForm = ({ setMeals }) => {
         food_id: foodId,
         quantity,
     };
-
-    useEffect(() => { // fetch meals
-        fetch("/meals")
-          .then((r) => r.json())
-          .then(setMealss);
-      }, []);
-
-      useEffect(() => { // fetch foods
-        fetch("/foods")
-          .then((r) => r.json())
-          .then(setFoods);
-      }, []);
 
       const handleSubmit = (e) => {
         e.preventDefault();
@@ -51,20 +30,15 @@ const AddToMealForm = ({ setMeals }) => {
           })
           .then((Obj) => {
             setMeals(prevMeals => {
-  return prevMeals.map(m => {
-    if (m.id === mealId) {
-      return {
-        ...m,
-        each_food_per_meal: [
-          ...m.each_food_per_meal,
-          Obj
-        ]
-      };
-    } else {
-      return m;
-    }
-  });
-});
+                const updatedMeals = prevMeals.map(m => {
+                    if (m.id === mealId) {
+                      return { ...m, each_food_per_meal: [...m.each_food_per_meal, Obj] };
+                    } else {
+                      return m;
+                    }
+                  });
+                  return updatedMeals;
+                });
             setMealId("");
             setFoodId("");
             setQuantity("");
@@ -88,11 +62,7 @@ const AddToMealForm = ({ setMeals }) => {
                         {meals.map((meal) => (
 
                         <option key={meal.id} value={meal.id}>
-
                             {meal.name} - {meal.date}
-
-
-
                         </option>
                         ))}
                     </select>

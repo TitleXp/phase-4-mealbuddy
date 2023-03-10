@@ -11,6 +11,10 @@ const AddToMeal = ({ foods, meals, setMeals, setFoods }) => {
     food.food_name.toLowerCase().includes(searchFood.toLowerCase())
   );
 
+  useEffect(() => {
+    console.log('meals inside AddToMeal.js', meals);
+  }, [meals]);
+
   return (
     <div>
       Add a food to an existing meal:
