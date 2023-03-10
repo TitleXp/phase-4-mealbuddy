@@ -22,6 +22,7 @@ const CreateAMealForm = ({onSubmitMeal, user}) => {
         e.preventDefault()
         postMeal()
             .then(onSubmitMeal)
+            .then(setMealForm(defaultInputs))
     }
 
     const postMeal = () => {

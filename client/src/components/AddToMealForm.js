@@ -41,8 +41,10 @@ const AddToMealForm = ({ setMeals }) => {
             }).then((r) => {
                 if (r.ok) {
                     r.json().then(Obj => {
-                        setMeals(Obj)
-                        // setFormData(formData) setJordanArray([...jordanArray, newShoe])
+                        setMeals(Obj);
+                        setMealId('')
+                        setFoodId('')
+                        setQuantity('')
                     })
                     history.push("/meals")
                 } else {
